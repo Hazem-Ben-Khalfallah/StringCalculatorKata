@@ -20,14 +20,7 @@ public class StringCalculatorTest {
      */
     @Test
     public void add_shouldReturnZeroIfInputIsAnEmptyString() {
-        // given
-        final String input = "";
-
-        // when
-        final int result = stringCalculator.add(input);
-
-        // then
-        Assertions.assertThat(result).isEqualTo(0);
+        checkInput("", 0);
     }
 
     /**
@@ -36,14 +29,7 @@ public class StringCalculatorTest {
      */
     @Test
     public void add_shouldReturnSameValueIfOneNumberIsPassed() {
-        // given
-        final String input = "4";
-
-        // when
-        final int result = stringCalculator.add(input);
-
-        // then
-        Assertions.assertThat(result).isEqualTo(4);
+        checkInput("4", 4);
     }
 
     /**
@@ -52,13 +38,24 @@ public class StringCalculatorTest {
      */
     @Test
     public void add_shouldReturnSumIfTwoNumbersArePassed() throws Exception {
-        // given
-        final String input = "1,3";
+        checkInput("1,3", 4);
+    }
 
+    /**
+     * @verifies return sum if any amount of numbers
+     * @see StringCalculator#add(String)
+     */
+    @Test
+    public void add_shouldReturnSumIfAnyAmountOfNumbers() throws Exception {
+        checkInput("1,2,3,4", 10);
+
+    }
+
+    private void checkInput(String input, int expectedResult) {
         // when
         final int result = stringCalculator.add(input);
 
         // then
-        Assertions.assertThat(result).isEqualTo(4);
+        Assertions.assertThat(result).isEqualTo(expectedResult);
     }
 }
