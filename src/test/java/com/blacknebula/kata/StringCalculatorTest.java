@@ -136,4 +136,32 @@ public class StringCalculatorTest {
             Assertions.assertThat(e.getMessage()).isEqualTo("negatives not allowed: [-3, -4]");
         }
     }
+
+    /**
+     * @verifies ignore numbers greater than 1000
+     * @see StringCalculator#add(String)
+     */
+    @Test
+    public void add_shouldIgnoreNumbersGreaterThan1000() throws Exception {
+        // given
+        final String input = "1,999,1000";
+        // when
+        final int result = stringCalculator.add(input);
+        // then
+        Assertions.assertThat(result).isEqualTo(1000);
+    }
+
+    /**
+     * @verifies return 0 if all numbers are greater than 1000
+     * @see StringCalculator#add(String)
+     */
+    @Test
+    public void add_shouldReturn0IfAllNumbersAreGreaterThan1000() throws Exception {
+        // given
+        final String input = "2000,1000";
+        // when
+        final int result = stringCalculator.add(input);
+        // then
+        Assertions.assertThat(result).isEqualTo(0);
+    }
 }

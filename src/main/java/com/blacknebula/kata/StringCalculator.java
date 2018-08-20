@@ -22,6 +22,8 @@ public class StringCalculator {
      * @should support a different delimiter
      * @should throw an exception if a negative has been added using default separators
      * @should throw an exception if a negative has been added using a custom separator
+     * @should ignore numbers greater than 1000
+     * @should return 0 if all numbers are greater than 1000
      */
     public int add(String text) {
         if (text.length() == 0) {
@@ -57,6 +59,7 @@ public class StringCalculator {
     private int calculateSum(List<Integer> numbers) {
         return numbers.stream()
                 .mapToInt(value -> value)
+                .filter(value -> value < 1000)
                 .sum();
     }
 
